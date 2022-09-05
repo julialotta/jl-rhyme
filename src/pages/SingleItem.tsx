@@ -68,15 +68,9 @@ export const SingleItem = () => {
     setIsLoading(true);
     editItem(newItem, item._id)
       .then(async () => {
-        fetchItem(id)
-          .then(async (d) => {
-            setItem(d);
-            setInEdit(false);
-            setIsLoading(false);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        setInEdit(false);
+        setIsLoading(false);
+        fetchItem(id);
       })
       .catch((error) => {
         console.log(error);
@@ -140,7 +134,7 @@ export const SingleItem = () => {
                           />
                         </StyledLabel>
                       </FlexDiv>
-                      <StyledButton type='submit' margin='10px'>
+                      <StyledButton margin='10px' type='submit'>
                         Spara
                       </StyledButton>
                     </FlexDiv>

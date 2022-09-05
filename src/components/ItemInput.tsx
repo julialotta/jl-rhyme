@@ -4,6 +4,7 @@ import { FlexDiv } from "../components/Style/Wrappers";
 import { INewData } from "../models/IData";
 
 import { postItem } from "../services/handleCustomersFetch.service";
+import { StyledLabel } from "./Style/TextElements";
 
 export const ItemInput = () => {
   const [newItem, setNewItem] = useState<INewData>({
@@ -35,14 +36,22 @@ export const ItemInput = () => {
       }}
     >
       <FlexDiv dir='column' gap='10px'>
-        <label>Title</label>
-        <input onChange={handleOnChange} type='text' name='title' />
-        <label>Description</label>
-        <input onChange={handleOnChange} type='text' name='description' />
-        <label>Author</label>
-        <input onChange={handleOnChange} type='text' name='author' />
-        <label>Body</label>
-        <input onChange={handleOnChange} type='text' name='body' />
+        <StyledLabel>
+          Title
+          <input onChange={handleOnChange} type='text' name='title' />
+        </StyledLabel>
+        <StyledLabel>
+          Description
+          <input onChange={handleOnChange} type='text' name='description' />
+        </StyledLabel>
+        <StyledLabel>
+          Author
+          <input onChange={handleOnChange} type='text' name='author' />
+        </StyledLabel>
+        <StyledLabel>
+          Body
+          <input onChange={handleOnChange} type='text' name='body' />
+        </StyledLabel>
       </FlexDiv>
       <StyledButton margin='10px' type='submit'>
         Spara

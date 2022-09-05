@@ -7,7 +7,7 @@ export const NotFound = () => {
       <StyledLink to={"/"}>
         <StyledButton>Tillbaka</StyledButton>
       </StyledLink>
-      <h1>Something went wrong</h1>
+      <h2>Something went wrong</h2>
     </div>
   );
 };
