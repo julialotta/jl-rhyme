@@ -7,7 +7,7 @@ export const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   background-color: ${(props: IStylingProps) =>
-    props.background || colors.rhymeblue};
+    props.background || colors.rhymepink};
   border: none;
   width: ${(props: IStylingProps) => props.width || "200px"};
   height: ${(props: IStylingProps) => props.height || "40px"};

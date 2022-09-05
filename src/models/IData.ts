@@ -5,3 +5,9 @@ export interface IData {
   author: string;
   body: string;
 }
+export interface INewData {
+  title: string;
+  description: string;
+  author: string;
+  body: string;
+}

@@ -1,58 +1,51 @@
-import axios from "axios";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Loader } from "../components/partials/Loader";
-import { StyledButton } from "../components/Style/StyledButton";
 import { FlexDiv } from "../components/Style/Wrappers";
 import { IData } from "../models/IData";
-import { set } from "../redux/features/DataSlice";
-import { getList } from "../services/StorageService";
+import {
+  StyledH5,
+  StyledLink,
+  StyledP,
+} from "../components/Style/TextElements";
+import { fetchData } from "../services/handleCustomersFetch.service";
+import { ItemInput } from "../components/ItemInput";
 
 export const Home = () => {
   const [data, setData] = useState<IData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    const LSdata = getList<IData>();
-    if (LSdata.length === 0) {
-      axios
-        .get<IData[]>(
-          "http://ec2-3-249-202-253.eu-west-1.compute.amazonaws.com/articles"
-        )
-        .then((response) => {
-          setData(response.data);
-          setIsLoading(false);
-        });
-      dispatch(set(data));
-    } else {
-      setData(LSdata);
-      setIsLoading(false);
-    }
+    fetchData()
+      .then(async (d) => {
+        setData(d);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
     <FlexDiv>
-      <FlexDiv dir='column' width='70%' textAlign='left' align='left'>
+      <FlexDiv dir='column' width='70%'>
         {isLoading ? (
           <Loader />
         ) : (
           <>
-            <h1>Home</h1>
-            <FlexDiv>
+            <ItemInput />
+            <FlexDiv dir='column' textJustify='left' width='90%'>
               {data?.map((item) => {
                 return (
-                  <FlexDiv key={item._id}>
-                    <FlexDiv dir='colum'>
-                      <h2>{item.title}</h2>
-                      <h6>{item.author}</h6>
-                      <p>{item.description}</p>
+                  <StyledLink to={"articles/" + item._id} key={item._id}>
+                    <FlexDiv dir='column' margin='10px 0' width='100%'>
+                      <StyledH5>Title: {item.title}</StyledH5>
+                      <StyledP>Author: {item.author}</StyledP>
+                      <StyledP>Description: {item.description}</StyledP>
                     </FlexDiv>
-                  </FlexDiv>
+                  </StyledLink>
                 );
               })}
             </FlexDiv>
-            <StyledButton>Klicka här</StyledButton>
           </>
         )}
       </FlexDiv>

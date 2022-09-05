@@ -7,6 +7,7 @@ export const FlexDiv = styled.div`
   flex-direction: ${(props: IStylingProps) => props.dir || "row"};
   align-items: ${(props: IStylingProps) => props.align || "center"};
   text-align: ${(props: IStylingProps) => props.textAlign || "center"};
+  text-justify: ${(props: IStylingProps) => props.textJustify || "center"};
   justify-content: ${(props: IStylingProps) => props.justify || "center"};
   flex-wrap: ${(props: IStylingProps) => props.wrap || "nowrap"};
   width: ${(props: IStylingProps) => props.width || "100%"};

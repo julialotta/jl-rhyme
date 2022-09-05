@@ -18,5 +18,7 @@ export interface IStylingProps {
   fontsize?: string;
   border?: string;
   textAlign?: string;
+  textJustify?: string;
   borderRadius?: string;
+  fontSize?: string;
 }
